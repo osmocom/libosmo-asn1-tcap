@@ -7,6 +7,17 @@ INCLUDES = $(all_includes) -I/usr/local/include/asn1c -I$(top_srcdir)/include
 AM_CFLAGS = -fPIC -Wall
 
 libosmo_asn1_tcap_la_SOURCES =	\
+	DialoguePDU.c	\
+	AARQ-apdu.c	\
+	AARE-apdu.c	\
+	RLRQ-apdu.c	\
+	RLRE-apdu.c	\
+	ABRT-apdu.c	\
+	ABRT-source.c	\
+	Associate-result.c	\
+	Associate-source-diagnostic.c	\
+	Release-request-reason.c	\
+	Release-response-reason.c	\
 	ExternalPDU.c	\
 	Dialog1.c	\
 	TCMessage.c	\
@@ -35,6 +46,8 @@ libosmo_asn1_tcap_la_SOURCES =	\
 	InvokeProblem.c	\
 	ReturnResultProblem.c	\
 	ReturnErrorProblem.c	\
-	ErrorCode.c
+	ErrorCode.c	\
+	UniDialoguePDU.c	\
+	AUDT-apdu.c
 
 lib_LTLIBRARIES=libosmo-asn1-tcap.la
