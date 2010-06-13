@@ -40,7 +40,8 @@ osmo_asn1_tcap_HEADERS = \
 	ReturnErrorProblem.h	\
 	ErrorCode.h	\
 	UniDialoguePDU.h	\
-	AUDT-apdu.h
+	AUDT-apdu.h \
+	EXTERNAL.h	# added manually
 
 osmo_asn1_tcapdir = $(includedir)/osmocom/tcap
 

@@ -22,11 +22,6 @@
 extern "C" {
 #endif
 
-/* Dependencies */
-typedef enum protocol_version {
-	protocol_version_version1	= 0
-} e_protocol_version;
-
 /* AUDT-apdu */
 typedef struct AUDT_apdu {
 	BIT_STRING_t	*protocol_version	/* DEFAULT {version1} */;

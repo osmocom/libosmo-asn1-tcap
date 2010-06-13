@@ -22,16 +22,11 @@
 extern "C" {
 #endif
 
-/* Dependencies */
-typedef enum protocol_version {
-	protocol_version_version1	= 0
-} e_protocol_version;
-
 /* AARQ-apdu */
 typedef struct AARQ_apdu {
 	BIT_STRING_t	*protocol_version	/* DEFAULT {version1} */;
 	OBJECT_IDENTIFIER_t	 application_context_name;
-	struct user_information {
+	struct AARQ_user_information {
 		A_SEQUENCE_OF(EXTERNAL_t) list;
 		
 		/* Context for parsing across buffer boundaries */

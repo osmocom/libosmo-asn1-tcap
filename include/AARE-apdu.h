@@ -35,7 +35,7 @@ typedef struct AARE_apdu {
 	OBJECT_IDENTIFIER_t	 application_context_name;
 	Associate_result_t	 result;
 	Associate_source_diagnostic_t	 result_source_diagnostic;
-	struct user_information {
+	struct AARE_user_information {
 		A_SEQUENCE_OF(EXTERNAL_t) list;
 		
 		/* Context for parsing across buffer boundaries */
