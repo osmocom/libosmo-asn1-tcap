@@ -103,3 +103,61 @@ diff -Nru /usr/local/include/osmocom/tcap//AUDT-apdu.h ./AUDT-apdu.h
  	/* Context for parsing across buffer boundaries */
  	asn_struct_ctx_t _asn_ctx;
 
+diff --git a/src/AARE-apdu.c b/src/AARE-apdu.c
+index c560c0e..5d1e35a 100644
+--- a/src/AARE-apdu.c
++++ b/src/AARE-apdu.c
+@@ -7,6 +7,7 @@
+ #include <asn_internal.h>
+ 
+ #include "AARE-apdu.h"
++#include "ABRT-apdu.h"
+ 
+ static asn_TYPE_member_t asn_MBR_user_information_7[] = {
+ 	{ ATF_POINTER, 0, 0,
+@@ -24,8 +25,8 @@ static ber_tlv_tag_t asn_DEF_user_information_tags_7[] = {
+ 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
+ };
+ static asn_SET_OF_specifics_t asn_SPC_user_information_specs_7 = {
+-	sizeof(struct AARE_user_information),
+-	offsetof(struct AARE_user_information, _asn_ctx),
++	sizeof(struct user_information),
++	offsetof(struct user_information, _asn_ctx),
+ 	0,	/* XER encoding is XMLDelimitedItemList */
+ };
+ static /* Use -fall-defs-global to expose */
+diff --git a/src/AARQ-apdu.c b/src/AARQ-apdu.c
+index f8de6f4..2e5ce4f 100644
+--- a/src/AARQ-apdu.c
++++ b/src/AARQ-apdu.c
+@@ -7,6 +7,7 @@
+ #include <asn_internal.h>
+ 
+ #include "AARQ-apdu.h"
++#include "ABRT-apdu.h"
+ 
+ static asn_TYPE_member_t asn_MBR_user_information_5[] = {
+ 	{ ATF_POINTER, 0, 0,
+@@ -24,8 +25,8 @@ static ber_tlv_tag_t asn_DEF_user_information_tags_5[] = {
+ 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
+ };
+ static asn_SET_OF_specifics_t asn_SPC_user_information_specs_5 = {
+-	sizeof(struct AARQ_user_information),
+-	offsetof(struct AARQ_user_information, _asn_ctx),
++	sizeof(struct user_information),
++	offsetof(struct user_information, _asn_ctx),
+ 	0,	/* XER encoding is XMLDelimitedItemList */
+ };
+ static /* Use -fall-defs-global to expose */
+diff --git a/src/AUDT-apdu.c b/src/AUDT-apdu.c
+index 1ec47fc..81f63c2 100644
+--- a/src/AUDT-apdu.c
++++ b/src/AUDT-apdu.c
+@@ -7,6 +7,7 @@
+ #include <asn_internal.h>
+ 
+ #include "AUDT-apdu.h"
++#include "ABRT-apdu.h"
+ 
+ static asn_TYPE_member_t asn_MBR_user_information_5[] = {
+ 	{ ATF_POINTER, 0, 0,

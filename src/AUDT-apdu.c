@@ -7,6 +7,7 @@
 #include <asn_internal.h>
 
 #include "AUDT-apdu.h"
+#include "ABRT-apdu.h"
 
 static asn_TYPE_member_t asn_MBR_user_information_5[] = {
 	{ ATF_POINTER, 0, 0,
