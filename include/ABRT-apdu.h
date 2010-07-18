@@ -12,7 +12,7 @@
 
 /* Including external dependencies */
 #include "ABRT-source.h"
-#include <EXTERNAL.h>
+#include "EXTERNAL.h"
 #include <asn_SEQUENCE_OF.h>
 #include <constr_SEQUENCE_OF.h>
 #include <constr_SEQUENCE.h>

@@ -15,7 +15,7 @@
 #include <OBJECT_IDENTIFIER.h>
 #include "Associate-result.h"
 #include "Associate-source-diagnostic.h"
-#include <EXTERNAL.h>
+#include "EXTERNAL.h"
 #include <asn_SEQUENCE_OF.h>
 #include <constr_SEQUENCE_OF.h>
 #include <constr_SEQUENCE.h>
@@ -35,12 +35,17 @@ typedef struct AARE_apdu {
 	OBJECT_IDENTIFIER_t	 application_context_name;
 	Associate_result_t	 result;
 	Associate_source_diagnostic_t	 result_source_diagnostic;
+#if 0
 	struct AARE_user_information {
 		A_SEQUENCE_OF(EXTERNAL_t) list;
 		
 		/* Context for parsing across buffer boundaries */
 		asn_struct_ctx_t _asn_ctx;
 	} *user_information;
+#else
+	/* use the definition from ABRT-apdu.h */
+	struct user_information *user_information;
+#endif
 	
 	/* Context for parsing across buffer boundaries */
 	asn_struct_ctx_t _asn_ctx;

@@ -1,0 +1,105 @@
+This patch needs to be applied to the asn1c output in order to
+make sure we don't re-define the 'user_information' for every different
+Dialogue portion PDU type and to make the EXTERNAL magic work
+diff -Nru /usr/local/include/osmocom/tcap//AARE-apdu.h ./AARE-apdu.h
+--- /usr/local/include/osmocom/tcap//AARE-apdu.h	2010-07-16 12:50:01.000000000 +0200
++++ ./AARE-apdu.h	2010-07-09 15:40:49.000000000 +0200
+@@ -15,7 +15,7 @@
+ #include <OBJECT_IDENTIFIER.h>
+ #include "Associate-result.h"
+ #include "Associate-source-diagnostic.h"
+-#include "EXTERNAL.h"
++#include <EXTERNAL.h>
+ #include <asn_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE.h>
+@@ -35,17 +35,12 @@
+ 	OBJECT_IDENTIFIER_t	 application_context_name;
+ 	Associate_result_t	 result;
+ 	Associate_source_diagnostic_t	 result_source_diagnostic;
+-#if 0
+ 	struct AARE_user_information {
+ 		A_SEQUENCE_OF(EXTERNAL_t) list;
+ 		
+ 		/* Context for parsing across buffer boundaries */
+ 		asn_struct_ctx_t _asn_ctx;
+ 	} *user_information;
+-#else
+-	/* use the definition from ABRT-apdu.h */
+-	struct user_information *user_information;
+-#endif
+ 	
+ 	/* Context for parsing across buffer boundaries */
+ 	asn_struct_ctx_t _asn_ctx;
+diff -Nru /usr/local/include/osmocom/tcap//AARQ-apdu.h ./AARQ-apdu.h
+--- /usr/local/include/osmocom/tcap//AARQ-apdu.h	2010-07-16 12:50:00.000000000 +0200
++++ ./AARQ-apdu.h	2010-07-09 15:40:49.000000000 +0200
+@@ -13,7 +13,7 @@
+ /* Including external dependencies */
+ #include <BIT_STRING.h>
+ #include <OBJECT_IDENTIFIER.h>
+-#include "EXTERNAL.h"
++#include <EXTERNAL.h>
+ #include <asn_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE.h>
+@@ -26,17 +26,12 @@
+ typedef struct AARQ_apdu {
+ 	BIT_STRING_t	*protocol_version	/* DEFAULT {version1} */;
+ 	OBJECT_IDENTIFIER_t	 application_context_name;
+-#if 0
+ 	struct AARQ_user_information {
+ 		A_SEQUENCE_OF(EXTERNAL_t) list;
+ 		
+ 		/* Context for parsing across buffer boundaries */
+ 		asn_struct_ctx_t _asn_ctx;
+ 	} *user_information;
+-#else
+-	/* use the definition from ABRT-apdu.h */
+-	struct user_information *user_information;
+-#endif
+ 	
+ 	/* Context for parsing across buffer boundaries */
+ 	asn_struct_ctx_t _asn_ctx;
+diff -Nru /usr/local/include/osmocom/tcap//ABRT-apdu.h ./ABRT-apdu.h
+--- /usr/local/include/osmocom/tcap//ABRT-apdu.h	2010-07-16 12:50:02.000000000 +0200
++++ ./ABRT-apdu.h	2010-07-09 15:40:49.000000000 +0200
+@@ -12,7 +12,7 @@
+ 
+ /* Including external dependencies */
+ #include "ABRT-source.h"
+-#include "EXTERNAL.h"
++#include <EXTERNAL.h>
+ #include <asn_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE.h>
+diff -Nru /usr/local/include/osmocom/tcap//AUDT-apdu.h ./AUDT-apdu.h
+--- /usr/local/include/osmocom/tcap//AUDT-apdu.h	2010-07-17 00:09:36.000000000 +0200
++++ ./AUDT-apdu.h	2010-07-09 15:40:49.000000000 +0200
+@@ -13,7 +13,7 @@
+ /* Including external dependencies */
+ #include <BIT_STRING.h>
+ #include <OBJECT_IDENTIFIER.h>
+-#include "EXTERNAL.h"
++#include <EXTERNAL.h>
+ #include <asn_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE_OF.h>
+ #include <constr_SEQUENCE.h>
+@@ -26,16 +26,12 @@
+ typedef struct AUDT_apdu {
+ 	BIT_STRING_t	*protocol_version	/* DEFAULT {version1} */;
+ 	OBJECT_IDENTIFIER_t	 application_context_name;
+-#if 0
+ 	struct user_information {
+ 		A_SEQUENCE_OF(EXTERNAL_t) list;
+ 		
+ 		/* Context for parsing across buffer boundaries */
+ 		asn_struct_ctx_t _asn_ctx;
+ 	} *user_information;
+-#else
+-	struct user_information *user_information;
+-#endif
+ 	
+ 	/* Context for parsing across buffer boundaries */
+ 	asn_struct_ctx_t _asn_ctx;
+
