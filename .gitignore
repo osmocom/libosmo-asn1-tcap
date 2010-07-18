@@ -18,5 +18,6 @@ libasn1c.pc
 *.o
 *.lo
 *.la
+*.pc
 .deps
 .libs
