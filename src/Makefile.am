@@ -4,7 +4,7 @@
 LIBVERSION=0:0:0
 
 INCLUDES = $(all_includes) -I/usr/local/include/asn1c -I$(top_srcdir)/include
-AM_CFLAGS = -fPIC -Wall
+AM_CFLAGS = -fPIC -Wall $(LIBASN1C_CFLAGS)
 
 libosmo_asn1_tcap_la_SOURCES =	\
 	DialoguePDU.c	\
