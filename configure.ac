@@ -14,7 +14,13 @@ AC_PROG_LIBTOOL
 
 AC_CONFIG_MACRO_DIR([m4])
 
-PKG_CHECK_MODULES(LIBASN1C, libasn1c)
+ASN1C_SKELETON_PATH="/usr/share/asn1c"
+ASN1C_BIN_PATH="/usr/bin/asn1c"
+ASN_MODULE_CFLAGS="-DASN_DISABLE_XER_SUPPORT -DASN_DISABLE_JER_SUPPORT -DASN_DISABLE_OER_SUPPORT -DASN_DISABLE_UPER_SUPPORT -DASN_DISABLE_APER_SUPPORT"
+AC_SUBST([ASN1C_SKELETON_PATH])
+AC_SUBST([ASN1C_BIN_PATH])
+AC_SUBST([ASN_MODULE_CFLAGS])
+
 
 # The following test is taken from WebKit's webkit.m4
 saved_CFLAGS="$CFLAGS"
@@ -57,5 +63,6 @@ AC_OUTPUT(
         libosmo-asn1-tcap.pc
         src/Makefile
         include/Makefile
+        include/osmocom/Makefile
+        include/osmocom/tcap/Makefile
         Makefile)
-
