@@ -1,4 +1,8 @@
-AC_INIT([libosmo-asn1-tcap], 0.0.0, [openbsc-devel@lists.openbsc.org])
+AC_INIT([libosmo-asn1-tcap],
+	m4_esyscmd([./git-version-gen .tarball-version]),
+	[openbsc@lists.osmocom.org])
+
+AC_CONFIG_AUX_DIR([.])
 
 AM_INIT_AUTOMAKE([dist-bzip2 subdir-objects])
 
