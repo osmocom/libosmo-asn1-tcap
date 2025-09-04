@@ -27,6 +27,32 @@ AC_COMPILE_IFELSE([char foo;],
 CFLAGS="$saved_CFLAGS"
 AC_SUBST(SYMBOL_VISIBILITY)
 
+AC_ARG_ENABLE(sanitize,
+	[AS_HELP_STRING(
+		[--enable-sanitize],
+		[Compile with address sanitizer enabled],
+	)],
+	[sanitize=$enableval], [sanitize="no"])
+if test x"$sanitize" = x"yes"
+then
+	CFLAGS="$CFLAGS -fsanitize=address -fsanitize=undefined"
+	CPPFLAGS="$CPPFLAGS -fsanitize=address -fsanitize=undefined"
+fi
+
+AC_ARG_ENABLE(werror,
+	[AS_HELP_STRING(
+		[--enable-werror],
+		[Turn all compiler warnings into errors]
+	)],
+	[werror=$enableval], [werror="no"])
+if test x"$werror" = x"yes"
+then
+	WERROR_FLAGS="-Werror"
+	WERROR_FLAGS+=" -Werror=implicit-int -Werror=int-conversion -Werror=old-style-definition"
+	CFLAGS="$CFLAGS $WERROR_FLAGS"
+	CPPFLAGS="$CPPFLAGS $WERROR_FLAGS"
+fi
+
 AC_OUTPUT(
         libosmo-asn1-tcap.pc
         src/Makefile
