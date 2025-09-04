@@ -24,3 +24,4 @@ libasn1c.pc
 .deps
 .libs
 .version
+include/osmocom/tcap/version.h

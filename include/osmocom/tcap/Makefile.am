@@ -78,9 +78,27 @@ GEN_HEADER_FILES = \
 	TCAP_asn_constant.h \
 	$(NULL)
 
+version.h: version.h.tpl
+	$(AM_V_GEN)$(MKDIR_P) $(dir $@)
+	$(AM_V_GEN)sed \
+		-e "s/{{VERSION}}/$$(echo '@VERSION@' | cut -d. -f1-3)/g" \
+		-e "s/{{VERSION_MAJOR}}/$$(echo '@VERSION@' | cut -d. -f1)/g" \
+		-e "s/{{VERSION_MINOR}}/$$(echo '@VERSION@' | cut -d. -f2)/g" \
+		-e "s/{{VERSION_PATCH}}/$$(echo '@VERSION@' | cut -d. -f3)/g" \
+		$< > $@
+
+BUILT_SOURCES = \
+	version.h \
+	$(NULL)
+
+EXTRA_DIST = \
+	     version.h.tpl \
+	     $(NULL)
+
 osmo_asn1_tcap_HEADERS = \
 	$(SKEL_HEADER_FILES) \
 	$(GEN_HEADER_FILES) \
+	version.h \
 	$(NULL)
 
 osmo_asn1_tcapdir = $(includedir)/osmocom/tcap
