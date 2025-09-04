@@ -6,3 +6,7 @@ SUBDIRS = src include
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libosmo-asn1-tcap.pc
+
+EXTRA_DIST = \
+	     debian \
+	     $(NULL)

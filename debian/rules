@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --with autoreconf --fail-missing
+
+override_dh_strip:
+	dh_strip --dbg-package=libosmo-asn1-tcap-dbg
+
+override_dh_install:
+	sed -i "/dependency_libs/ s/'.*'/''/" `find . -name '*.la'`
+	dh_install
+
+override_dh_auto_test:
+	dh_auto_test || (find . -name testsuite.log -exec cat {} \; ; false)

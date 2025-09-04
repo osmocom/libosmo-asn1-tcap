@@ -1,0 +1,38 @@
+Source: libosmo-asn1-tcap
+Section: libs
+Priority: optional
+Maintainer: Osmocom team <openbsc@lists.osmocom.org>
+Build-Depends: debhelper (>= 10),
+               autoconf,
+               automake,
+               autotools-dev,
+               dh-autoreconf,
+               git,
+               libtool,
+               pkg-config,
+Standards-Version: 3.9.6
+Vcs-Browser: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
+Vcs-Git: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
+Homepage: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
+
+Package: libosmo-asn1-tcap0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Description: Utility library for ASN.1 of TCAP (SS7)
+
+Package: libosmo-asn1-tcap-dev
+Section: libdevel
+Architecture: any
+Depends: libosmo-asn1-tcap0 (= ${binary:Version}), ${misc:Depends}
+Multi-Arch: same
+Description: Development headers for utility library for ASN.1 of TCAP (SS7)
+
+Package: libosmo-asn1-tcap-dbg
+Section: debug
+Architecture: any
+Priority: extra
+Depends: libosmo-asn1-tcap0 (= ${binary:Version}), ${misc:Depends}
+Multi-Arch: same
+Description: Debug symbols for utility library for ASN.1 of TCAP (SS7)
