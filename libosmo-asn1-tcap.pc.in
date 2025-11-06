@@ -7,4 +7,4 @@ Name: ASN.1 library for TCAP protocol (SS7)
 Description: C Utility Library
 Version: @VERSION@
 Libs: -L${libdir} -losmo-asn1-tcap
-Cflags: -I${includedir}/osmocom/tcap/
+Cflags: -I${includedir}/
