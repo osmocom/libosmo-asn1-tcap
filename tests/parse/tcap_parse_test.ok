@@ -1,0 +1,8 @@
+Basic TCAP decode testing.
+Begin ::= {
+    otid: 00 01 02 03
+}
+62 06 
+48 04 
+00 01 02 03 
+All tests passed.

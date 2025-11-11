@@ -1,0 +1,8 @@
+AT_INIT
+AT_BANNER([Regression tests.])
+
+AT_SETUP([parse])
+AT_KEYWORDS([parse])
+cat $abs_srcdir/parse/tcap_parse_test.ok > expout
+AT_CHECK([$abs_top_builddir/tests/parse/tcap_parse_test], [], [expout], [ignore])
+AT_CLEANUP

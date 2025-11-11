@@ -5,6 +5,7 @@ AC_INIT([libosmo-asn1-tcap],
 AC_CONFIG_AUX_DIR([.])
 
 AM_INIT_AUTOMAKE([dist-bzip2 subdir-objects])
+AC_CONFIG_TESTDIR(tests)
 
 dnl kernel style compile messages
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -66,6 +67,8 @@ fi
 AC_OUTPUT(
         libosmo-asn1-tcap.pc
         src/Makefile
+        tests/Makefile
+        tests/parse/Makefile
         include/Makefile
         include/osmocom/Makefile
         include/osmocom/tcap/Makefile

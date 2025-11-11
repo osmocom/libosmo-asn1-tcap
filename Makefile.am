@@ -8,7 +8,7 @@ dist-hook:
 	echo $(VERSION) > $(distdir)/.tarball-version
 
 INCLUDES = $(all_includes) -I$(top_srcdir)/include/osmocom/tcap
-SUBDIRS = src include
+SUBDIRS = src tests include
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libosmo-asn1-tcap.pc
