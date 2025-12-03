@@ -25,3 +25,11 @@ libasn1c.pc
 .libs
 .version
 include/osmocom/tcap/version.h
+
+#tests
+tests/*/*_test
+
+tests/atconfig
+tests/package.m4
+tests/testsuite
+tests/testsuite.log
