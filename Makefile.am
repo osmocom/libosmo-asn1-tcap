@@ -18,3 +18,6 @@ EXTRA_DIST = \
 	     debian \
 	     git-version-gen \
 	     $(NULL)
+
+@RELMAKE@
+
