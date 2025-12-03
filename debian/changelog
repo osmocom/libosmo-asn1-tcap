@@ -1,3 +1,23 @@
+libosmo-asn1-tcap (0.2.0) unstable; urgency=medium
+
+  [ Oliver Smith ]
+  * configure.ac: use subdir-objects
+  * Add git-version-gen
+  * Generate a version.h file
+
+  [ Vadim Yanitskiy ]
+  * libosmo-asn1-tcap.pc.in: fix include path in Cflags
+
+  [ Daniel Willmann ]
+  * Add test to ensure parsing works
+
+  [ Pau Espin Pedrol ]
+  * tests/Makefile.am: Remove -static flag
+  * .gitignore: Add missing tests/ entries
+  * Use release helper from libosmocore
+
+ -- Pau Espin Pedrol <pespin@sysmocom.de>  Wed, 03 Dec 2025 17:09:15 +0100
+
 libosmo-asn1-tcap (0.1.0) unstable; urgency=medium
 
   * initial
