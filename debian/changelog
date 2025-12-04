@@ -1,3 +1,10 @@
+libosmo-asn1-tcap (0.2.1) unstable; urgency=medium
+
+  * Remove unneeded asn1c-fixup.patch
+  * Only export needed wrapper API
+
+ -- Pau Espin Pedrol <pespin@sysmocom.de>  Thu, 04 Dec 2025 18:51:04 +0100
+
 libosmo-asn1-tcap (0.2.0) unstable; urgency=medium
 
   [ Oliver Smith ]

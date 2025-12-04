@@ -15,7 +15,7 @@ Vcs-Browser: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
 Vcs-Git: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
 Homepage: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
 
-Package: libosmo-asn1-tcap0
+Package: libosmo-asn1-tcap1
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -25,7 +25,7 @@ Description: Utility library for ASN.1 of TCAP (SS7)
 Package: libosmo-asn1-tcap-dev
 Section: libdevel
 Architecture: any
-Depends: libosmo-asn1-tcap0 (= ${binary:Version}), ${misc:Depends}
+Depends: libosmo-asn1-tcap1 (= ${binary:Version}), ${misc:Depends}
 Multi-Arch: same
 Description: Development headers for utility library for ASN.1 of TCAP (SS7)
 
@@ -33,6 +33,6 @@ Package: libosmo-asn1-tcap-dbg
 Section: debug
 Architecture: any
 Priority: extra
-Depends: libosmo-asn1-tcap0 (= ${binary:Version}), ${misc:Depends}
+Depends: libosmo-asn1-tcap1 (= ${binary:Version}), ${misc:Depends}
 Multi-Arch: same
 Description: Debug symbols for utility library for ASN.1 of TCAP (SS7)
