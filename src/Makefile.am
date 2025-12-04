@@ -1,3 +1,5 @@
+AM_CFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/src/skel $(ASN_MODULE_CFLAGS)
+
 SKEL_SRC = \
 	skel/ANY.c \
 	skel/ANY_ber.c \
@@ -197,10 +199,10 @@ ASN_MODULE_INC = \
 # documentation before making any modification
 LIBVERSION=0:0:0
 
-#INCLUDES = $(all_includes) -I/usr/local/include/asn1c -I$(top_srcdir)/include
-AM_CFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/src/skel $(ASN_MODULE_CFLAGS)
+libosmo_asn1_tcap_la_LDFLAGS = -version-info $(LIBVERSION) -no-undefined -export-symbols-regex '^osmo_'
 
 libosmo_asn1_tcap_la_SOURCES =	\
+	tcap.c \
 	$(ASN_MODULE_SRC)
 
 lib_LTLIBRARIES=libosmo-asn1-tcap.la

@@ -2,7 +2,7 @@ AM_CPPFLAGS = $(all_includes) -I$(top_srcdir)/include -I$(top_srcdir)/src
 AM_CFLAGS = -Wall
 AM_LDFLAGS = -no-install
 
-LDADD = $(top_builddir)/src/libosmo-asn1-tcap.la
+LDADD = $(top_builddir)/src/.libs/libosmo-asn1-tcap.a
 
 check_PROGRAMS = \
 	tcap_parse_test \

@@ -98,6 +98,7 @@ EXTRA_DIST = \
 osmo_asn1_tcap_HEADERS = \
 	$(SKEL_HEADER_FILES) \
 	$(GEN_HEADER_FILES) \
+	tcap.h \
 	version.h \
 	$(NULL)
 
