@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 {
 	asn_dec_rval_t rc;
 	struct TCAP_TCMessage *tcapmsg;
-	tcapmsg = calloc(1, sizeof(*tcapmsg));
+	tcapmsg = CALLOC(1, sizeof(*tcapmsg));
 
 	printf("Basic TCAP decode testing.\n");
 
