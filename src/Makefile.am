@@ -1,4 +1,4 @@
-AM_CFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/src/skel $(ASN_MODULE_CFLAGS)
+AM_CFLAGS = -I$(top_srcdir)/include/ -I$(top_srcdir)/src/skel $(ASN_MODULE_CFLAGS) $(TALLOC_CFLAGS)
 
 SKEL_SRC = \
 	skel/ANY.c \
@@ -201,6 +201,8 @@ LIBVERSION=1:0:0
 
 libosmo_asn1_tcap_la_LDFLAGS = -version-info $(LIBVERSION) -no-undefined -export-symbols-regex '^osmo_'
 
+libosmo_asn1_tcap_la_LIBADD = $(TALLOC_LIBS)
+
 libosmo_asn1_tcap_la_SOURCES =	\
 	tcap.c \
 	$(ASN_MODULE_SRC)
@@ -239,6 +241,13 @@ regenerate-from-asn1-source:
 # #include <...> in *.c and *.h files
 	cd $(top_srcdir)/src/gen && \
 		../../move-asn1-header-files.sh osmocom/tcap $(ASN_MODULE_INC)
+#Patch mem alloc defines to use talloc:
+	sed -i "s/#define\tASN_INTERNAL_H/#define\tASN_INTERNAL_H\n#include <talloc.h>/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
+	sed -i "s/#define\tCALLOC/extern void *tcap_talloc_asn1_ctx;\n#define\tCALLOC/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
+	sed -i "s/calloc(nmemb, size)/talloc_zero_size(tcap_talloc_asn1_ctx, (nmemb) * (size))/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
+	sed -i "s/malloc(size)/talloc_size(tcap_talloc_asn1_ctx, size)/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
+	sed -i "s/realloc(oldptr, size)/talloc_realloc_size(tcap_talloc_asn1_ctx, oldptr, size)/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
+	sed -i "s/free(ptr)/talloc_free(ptr)/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
 # Move skeleton *.c files to src/skel
 	rm -rf $(top_srcdir)/src/skel
 	mkdir $(top_srcdir)/src/skel

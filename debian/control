@@ -10,6 +10,7 @@ Build-Depends: debhelper (>= 10),
                git,
                libtool,
                pkg-config,
+               libtalloc-dev (>= 2.1.0)
 Standards-Version: 3.9.6
 Vcs-Browser: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
 Vcs-Git: https://gitea.osmocom.org/ss7-in-c/libosmo-asn1-tcap
@@ -25,7 +26,9 @@ Description: Utility library for ASN.1 of TCAP (SS7)
 Package: libosmo-asn1-tcap-dev
 Section: libdevel
 Architecture: any
-Depends: libosmo-asn1-tcap1 (= ${binary:Version}), ${misc:Depends}
+Depends: libosmo-asn1-tcap1 (= ${binary:Version}),
+         libtalloc-dev (>= 2.1.0),
+         ${misc:Depends}
 Multi-Arch: same
 Description: Development headers for utility library for ASN.1 of TCAP (SS7)
 
