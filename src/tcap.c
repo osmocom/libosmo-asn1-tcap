@@ -28,6 +28,13 @@
 
 void *tcap_talloc_asn1_ctx;
 
+void *osmo_asn1_tcap_set_talloc_ctx(void *tall_ctx)
+{
+	void *prev_talloc_ctx = tcap_talloc_asn1_ctx;
+	tcap_talloc_asn1_ctx = tall_ctx;
+	return prev_talloc_ctx;
+}
+
 int osmo_asn1_tcap_decode(struct TCAP_TCMessage *tcapmsg, const uint8_t *data, size_t data_len)
 {
 
