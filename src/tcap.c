@@ -26,6 +26,8 @@
 #include <osmocom/tcap/asn_codecs.h>
 #include <osmocom/tcap/TCAP_TCMessage.h>
 
+void *tcap_talloc_asn1_ctx;
+
 int osmo_asn1_tcap_decode(struct TCAP_TCMessage *tcapmsg, const uint8_t *data, size_t data_len)
 {
 

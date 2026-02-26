@@ -31,6 +31,8 @@ AC_SUBST([ASN1C_BIN_PATH])
 AC_SUBST([ASN_MODULE_CFLAGS])
 
 
+PKG_CHECK_MODULES(TALLOC, [talloc >= 2.1.0])
+
 # The following test is taken from WebKit's webkit.m4
 saved_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -fvisibility=hidden "
