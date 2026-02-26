@@ -210,7 +210,9 @@ lib_LTLIBRARIES=libosmo-asn1-tcap.la
 regen: regenerate-from-asn1-source
 
 regenerate-from-asn1-source:
-	rm -f $(top_srcdir)/src/gen/*.c $(top_srcdir)/include/osmocom/tcap/*.h
+	rm -f $(top_srcdir)/src/gen/*.c
+# Remove all .h files except our tcap.h:
+	find $(top_srcdir)/include/osmocom/tcap/ -type f -name '*.h' -type f -not -name 'tcap.h' -delete
 	ASN1C_PREFIX="TCAP_" ${ASN1C_BIN_PATH} \
 		-S $(ASN1C_SKELETON_PATH) \
 		-D $(top_srcdir)/src/gen \
