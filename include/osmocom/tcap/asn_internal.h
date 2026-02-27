@@ -35,7 +35,7 @@ extern "C" {
 #define	ASN1C_ENVIRONMENT_VERSION	923	/* Compile-time version */
 int get_asn1c_environment_version(void);	/* Run-time version */
 
-extern void *tcap_talloc_asn1_ctx;
+extern __thread void *tcap_talloc_asn1_ctx;
 #define	CALLOC(nmemb, size)	talloc_zero_size(tcap_talloc_asn1_ctx, (nmemb) * (size))
 #define	MALLOC(size)		talloc_size(tcap_talloc_asn1_ctx, size)
 #define	REALLOC(oldptr, size)	talloc_realloc_size(tcap_talloc_asn1_ctx, oldptr, size)

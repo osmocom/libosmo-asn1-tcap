@@ -243,7 +243,7 @@ regenerate-from-asn1-source:
 		../../move-asn1-header-files.sh osmocom/tcap $(ASN_MODULE_INC)
 #Patch mem alloc defines to use talloc:
 	sed -i "s/#define\tASN_INTERNAL_H/#define\tASN_INTERNAL_H\n#include <talloc.h>/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
-	sed -i "s/#define\tCALLOC/extern void *tcap_talloc_asn1_ctx;\n#define\tCALLOC/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
+	sed -i "s/#define\tCALLOC/extern __thread void *tcap_talloc_asn1_ctx;\n#define\tCALLOC/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
 	sed -i "s/calloc(nmemb, size)/talloc_zero_size(tcap_talloc_asn1_ctx, (nmemb) * (size))/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
 	sed -i "s/malloc(size)/talloc_size(tcap_talloc_asn1_ctx, size)/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
 	sed -i "s/realloc(oldptr, size)/talloc_realloc_size(tcap_talloc_asn1_ctx, oldptr, size)/g" $(top_srcdir)/include/osmocom/tcap/asn_internal.h
