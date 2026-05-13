@@ -3,6 +3,7 @@ Decoding testvector no 0 - Begin
 Begin ::= {
     otid: 00 01 02 03
 }
+Basic TCAP encode testing.
 62 06 
 48 04 
 00 01 02 03 

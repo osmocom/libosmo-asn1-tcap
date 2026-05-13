@@ -43,28 +43,11 @@ static struct testvector testvectors[] = {
 	{ .name = "Begin", .vector = pkt_begin, .vector_len = sizeof(pkt_begin) },
 };
 
-int main(int argc, char **argv)
+static int encode_tests(void)
 {
-	asn_dec_rval_t rc;
-
-	printf("Basic TCAP decode testing.\n");
-	struct TCAP_TCMessage _tcapmsg = {};
-
-	for (int i = 0; i < ARRAY_SIZE(testvectors); i++) {
-		struct TCAP_TCMessage *tcapmsg = &_tcapmsg;
-		memset(tcapmsg, 0, sizeof(*tcapmsg));
-		printf("Decoding testvector no %d - %s\n", i, testvectors[i].name);
-
-		rc = ber_decode(0, &asn_DEF_TCAP_TCMessage, (void **)&tcapmsg, testvectors[i].vector, testvectors[i].vector_len);
-		if (rc.code != RC_OK)
-			printf("Broken decoding %u at byte %lu\n", rc.code, rc.consumed);
-		else
-			asn_fprint(stdout, &asn_DEF_TCAP_TCMessage, tcapmsg);
-
-		ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_TCAP_TCMessage, tcapmsg);
-	}
-
 	uint8_t buf[] = {0x00, 0x01, 0x02, 0x03};
+
+	printf("Basic TCAP encode testing.\n");
 
 	struct TCAP_TCMessage msg = {
 		.present = TCAP_TCMessage_PR_begin,
@@ -77,6 +60,42 @@ int main(int argc, char **argv)
 	};
 
 	der_encode(&asn_DEF_TCAP_TCMessage, &msg, write_stream, NULL);
+	return 0;
+}
+
+static int decode_tests(void)
+{
+	int ret = 0;
+	asn_dec_rval_t rc;
+
+	printf("Basic TCAP decode testing.\n");
+	struct TCAP_TCMessage _tcapmsg = {};
+
+	for (int i = 0; i < ARRAY_SIZE(testvectors); i++) {
+		printf("Decoding testvector no %d - %s\n", i, testvectors[i].name);
+		struct TCAP_TCMessage *tcapmsg = &_tcapmsg;
+
+		memset(tcapmsg, 0, sizeof(*tcapmsg));
+		rc = ber_decode(0, &asn_DEF_TCAP_TCMessage, (void **)&tcapmsg, testvectors[i].vector, testvectors[i].vector_len);
+		if (rc.code != RC_OK) {
+			ret = 1;
+			printf("Broken decoding %u at byte %lu\n", rc.code, rc.consumed);
+		} else
+			asn_fprint(stdout, &asn_DEF_TCAP_TCMessage, tcapmsg);
+
+		ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_TCAP_TCMessage, tcapmsg);
+	}
+
+	return ret;
+}
+
+int main(int argc, char **argv)
+{
+	if (decode_tests())
+		return 1;
+
+	if (encode_tests())
+		return 1;
 
 	printf("All tests passed.\n");
 	return 0;
