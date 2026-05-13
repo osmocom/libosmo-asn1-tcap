@@ -14,8 +14,9 @@
 #include <osmocom/tcap/TCAP_OrigTransactionID.h>
 #include <stdlib.h>
 
-
-static const unsigned char pkt1[] = {0x62, 0x06, 0x48, 0x04, 0x00, 0x01, 0x02, 0x03};
+#ifndef ARRAY_SIZE
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+#endif /* ARRAY_SIZE */
 
 static int write_stream(const void *buffer, size_t size, void *key)
 {
@@ -26,21 +27,42 @@ static int write_stream(const void *buffer, size_t size, void *key)
 	return 0;
 }
 
+/* Transaction Capabilities Application Part
+ *     begin
+ *         Destination Transaction ID
+ *             dtid: 00010203
+ */
+static const unsigned char pkt_begin[] = { 0x62, 0x06, 0x48, 0x04, 0x00, 0x01, 0x02, 0x03 };
+
+struct testvector {
+	const char *name;
+	const unsigned char *vector;
+	size_t vector_len;
+};
+static struct testvector testvectors[] = {
+	{ .name = "Begin", .vector = pkt_begin, .vector_len = sizeof(pkt_begin) },
+};
+
 int main(int argc, char **argv)
 {
 	asn_dec_rval_t rc;
-	struct TCAP_TCMessage *tcapmsg;
-	tcapmsg = CALLOC(1, sizeof(*tcapmsg));
 
 	printf("Basic TCAP decode testing.\n");
+	struct TCAP_TCMessage _tcapmsg = {};
 
-	rc = ber_decode(0, &asn_DEF_TCAP_TCMessage, (void **)&tcapmsg, pkt1, sizeof(pkt1));
-	if (rc.code != RC_OK)
-		printf("Broken encoding %u at byte %lu\n", rc.code, rc.consumed);
+	for (int i = 0; i < ARRAY_SIZE(testvectors); i++) {
+		struct TCAP_TCMessage *tcapmsg = &_tcapmsg;
+		memset(tcapmsg, 0, sizeof(*tcapmsg));
+		printf("Decoding testvector no %d - %s\n", i, testvectors[i].name);
 
-	asn_fprint(stdout, &asn_DEF_TCAP_TCMessage, tcapmsg);
-	ASN_STRUCT_FREE(asn_DEF_TCAP_TCMessage, tcapmsg);
+		rc = ber_decode(0, &asn_DEF_TCAP_TCMessage, (void **)&tcapmsg, testvectors[i].vector, testvectors[i].vector_len);
+		if (rc.code != RC_OK)
+			printf("Broken decoding %u at byte %lu\n", rc.code, rc.consumed);
+		else
+			asn_fprint(stdout, &asn_DEF_TCAP_TCMessage, tcapmsg);
 
+		ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_TCAP_TCMessage, tcapmsg);
+	}
 
 	uint8_t buf[] = {0x00, 0x01, 0x02, 0x03};
 
