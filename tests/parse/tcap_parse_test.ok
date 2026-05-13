@@ -3,6 +3,48 @@ Decoding testvector no 0 - Begin
 Begin ::= {
     otid: 00 01 02 03
 }
+Decoding testvector no 1 - End
+End ::= {
+    dtid: 7F C2 92 3A
+}
+Decoding testvector no 2 - End with Dialog
+End ::= {
+    dtid: C9 14 3D 64
+    dialoguePortion: DialoguePortion ::= {
+        direct-reference: { 0.0.17.773.1.1.1 }
+        encoding: 
+            61 1B 80 02 07 80 A1 09 06 07 04 00 00 01 00 01 
+            03 A2 03 02 01 00 A3 05 A1 03 02 01 00
+    }
+}
+Decoding testvector no 3 - End with Component
+End ::= {
+    dtid: C9 14 3D 64
+    components: ComponentPortion ::= {
+        ReturnError ::= {
+            invokeID: 1
+            errorCode: 8
+            parameter: 30 03 0A 01 00
+        }
+    }
+}
+Decoding testvector no 4 - End with Dialog & Component
+End ::= {
+    dtid: C9 14 3D 64
+    dialoguePortion: DialoguePortion ::= {
+        direct-reference: { 0.0.17.773.1.1.1 }
+        encoding: 
+            61 1B 80 02 07 80 A1 09 06 07 04 00 00 01 00 01 
+            03 A2 03 02 01 00 A3 05 A1 03 02 01 00
+    }
+    components: ComponentPortion ::= {
+        ReturnError ::= {
+            invokeID: 1
+            errorCode: 8
+            parameter: 30 03 0A 01 00
+        }
+    }
+}
 Basic TCAP encode testing.
 62 06 
 48 04 
