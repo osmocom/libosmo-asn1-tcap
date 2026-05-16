@@ -5,19 +5,6 @@ DEFINITIONS  ::=
 
 BEGIN
 
---EXPORTS		     OPERATION, ERROR, Component, InvokeId Type;
--- WS stuff
-ExternalPDU ::= [UNIVERSAL 8] IMPLICIT SEQUENCE
-					{
-					oid OBJECT IDENTIFIER,
-					dialog [0] IMPLICIT Dialog1
-					}
-
-
-Dialog1 ::= OCTET STRING
--- End WS
--- Transaction Portion fields
-
 TCMessage ::= CHOICE {
 				unidirectional				[APPLICATION 1]		IMPLICIT Unidirectional,
 				begin						[APPLICATION 2]		IMPLICIT Begin,
@@ -67,10 +54,6 @@ Reason ::= CHOICE{
 -- abstract syntax.
 
 DialoguePortion ::= [APPLICATION 11] EXPLICIT EXTERNAL
-
--- WS adaptation
---DialoguePortion ::= [APPLICATION  11] IMPLICIT DialogueOC
---DialogueOC ::= OCTET STRING
 
 -- The dialogue portion carries the dialogue control PDUs as value of the external data type.
 -- The direct reference should be set to { ccitt recommendation q 773 as (1) dialogue-as (1) version (1) }

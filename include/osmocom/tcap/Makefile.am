@@ -46,14 +46,12 @@ GEN_HEADER_FILES = \
 	TCAP_ComponentPortion.h \
 	TCAP_Continue.h \
 	TCAP_DestTransactionID.h \
-	TCAP_Dialog1.h \
 	TCAP_DialoguePDU.h \
 	TCAP_DialoguePortion.h \
 	TCAP_ERROR.h \
 	TCAP_EXTERNAL.h \
 	TCAP_End.h \
 	TCAP_ErrorCode.h \
-	TCAP_ExternalPDU.h \
 	TCAP_GeneralProblem.h \
 	TCAP_Invoke.h \
 	TCAP_InvokeIdType.h \

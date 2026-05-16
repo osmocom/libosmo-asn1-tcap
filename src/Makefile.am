@@ -73,14 +73,12 @@ GEN_SRC = \
 	gen/TCAP_ComponentPortion.c \
 	gen/TCAP_Continue.c \
 	gen/TCAP_DestTransactionID.c \
-	gen/TCAP_Dialog1.c \
 	gen/TCAP_DialoguePDU.c \
 	gen/TCAP_DialoguePortion.c \
 	gen/TCAP_ERROR.c \
 	gen/TCAP_EXTERNAL.c \
 	gen/TCAP_End.c \
 	gen/TCAP_ErrorCode.c \
-	gen/TCAP_ExternalPDU.c \
 	gen/TCAP_GeneralProblem.c \
 	gen/TCAP_Invoke.c \
 	gen/TCAP_InvokeIdType.c \
@@ -156,7 +154,6 @@ GEN_HEADER_FILES = \
 	TCAP_Begin.h \
 	TCAP_DialoguePDU.h \
 	TCAP_Release-response-reason.h \
-	TCAP_ExternalPDU.h \
 	TCAP_AARQ-apdu.h \
 	TCAP_Continue.h \
 	TCAP_asn_constant.h \
@@ -166,7 +163,6 @@ GEN_HEADER_FILES = \
 	TCAP_End.h \
 	TCAP_ReturnResult.h \
 	TCAP_Abort.h \
-	TCAP_Dialog1.h \
 	TCAP_OPERATION.h \
 	TCAP_Reject.h \
 	TCAP_Invoke.h \
