@@ -164,6 +164,7 @@ static int decode_tests(void)
 		if (rc.code != RC_OK) {
 			ret = 1;
 			printf("Broken decoding %u at byte %lu\n", rc.code, rc.consumed);
+			asn_fprint(stdout, &asn_DEF_TCAP_TCMessage, tcapmsg);
 		} else
 			asn_fprint(stdout, &asn_DEF_TCAP_TCMessage, tcapmsg);
 
