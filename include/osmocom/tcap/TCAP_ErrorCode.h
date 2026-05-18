@@ -11,35 +11,21 @@
 
 /* Including external dependencies */
 #include <osmocom/tcap/NativeInteger.h>
-#include <osmocom/tcap/constr_CHOICE.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Dependencies */
-typedef enum TCAP_ErrorCode_PR {
-	TCAP_ErrorCode_PR_NOTHING,	/* No components present */
-	TCAP_ErrorCode_PR_nationaler,
-	TCAP_ErrorCode_PR_privateer
-} TCAP_ErrorCode_PR;
-
 /* TCAP_ErrorCode */
-typedef struct TCAP_ErrorCode {
-	TCAP_ErrorCode_PR present;
-	union TCAP_ErrorCode_u {
-		long	 nationaler;
-		long	 privateer;
-	} choice;
-	
-	/* Context for parsing across buffer boundaries */
-	asn_struct_ctx_t _asn_ctx;
-} TCAP_ErrorCode_t;
+typedef long	 TCAP_ErrorCode_t;
 
 /* Implementation */
 extern asn_TYPE_descriptor_t asn_DEF_TCAP_ErrorCode;
-extern asn_CHOICE_specifics_t asn_SPC_TCAP_ErrorCode_specs_1;
-extern asn_TYPE_member_t asn_MBR_TCAP_ErrorCode_1[2];
+asn_struct_free_f TCAP_ErrorCode_free;
+asn_struct_print_f TCAP_ErrorCode_print;
+asn_constr_check_f TCAP_ErrorCode_constraint;
+ber_type_decoder_f TCAP_ErrorCode_decode_ber;
+der_type_encoder_f TCAP_ErrorCode_encode_der;
 
 #ifdef __cplusplus
 }

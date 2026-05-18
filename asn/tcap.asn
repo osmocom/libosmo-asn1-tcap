@@ -237,11 +237,6 @@ ReturnErrorProblem	::=	INTEGER {		unrecognizedInvokeID (0),
 								unexpectedError (3),
 								mistypedParameter (4) }
 
-
-ErrorCode ::= CHOICE
-			{
-				nationaler 		[PRIVATE 19] IMPLICIT INTEGER (-32768..32767),
-				privateer 		[PRIVATE 20] IMPLICIT INTEGER
-			}
+ErrorCode ::= INTEGER
 
 END -- end of the TCAP Package Module

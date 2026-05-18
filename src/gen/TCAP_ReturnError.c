@@ -27,7 +27,7 @@ asn_TYPE_member_t asn_MBR_TCAP_ReturnError_1[] = {
 		"invokeID"
 		},
 	{ ATF_NOFLAGS, 0, offsetof(struct TCAP_ReturnError, errorCode),
-		-1 /* Ambiguous tag (CHOICE?) */,
+		(ASN_TAG_CLASS_UNIVERSAL | (2 << 2)),
 		0,
 		&asn_DEF_TCAP_ErrorCode,
 		0,
@@ -71,15 +71,14 @@ static const ber_tlv_tag_t asn_DEF_TCAP_ReturnError_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
 };
 static const asn_TYPE_tag2member_t asn_MAP_TCAP_ReturnError_tag2el_1[] = {
-    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 0, 0, 0 }, /* invokeID */
-    { (ASN_TAG_CLASS_PRIVATE | (19 << 2)), 1, 0, 0 }, /* nationaler */
-    { (ASN_TAG_CLASS_PRIVATE | (20 << 2)), 1, 0, 0 } /* privateer */
+    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 0, 0, 1 }, /* invokeID */
+    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 1, -1, 0 } /* errorCode */
 };
 asn_SEQUENCE_specifics_t asn_SPC_TCAP_ReturnError_specs_1 = {
 	sizeof(struct TCAP_ReturnError),
 	offsetof(struct TCAP_ReturnError, _asn_ctx),
 	asn_MAP_TCAP_ReturnError_tag2el_1,
-	3,	/* Count of tags in the map */
+	2,	/* Count of tags in the map */
 	0, 0, 0,	/* Optional elements (not needed) */
 	-1,	/* First extension addition */
 };
