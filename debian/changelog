@@ -1,3 +1,22 @@
+libosmo-asn1-tcap (0.3.0) unstable; urgency=medium
+
+  [ Pau Espin Pedrol ]
+  * Add README.md
+  * Makefile.am: Avoid removing tcap.h during make -C src/ regen
+  * tests: Use mem alloc macro instead of direct calloc() call
+  * Use talloc to allocate asn1c decoded structs
+  * Introduce API osmo_asn1_tcap_TCMessage_decode()
+
+  [ Alexander Couzens ]
+  * asn1: Decode ErrorCode as Integer
+  * tests: improve test infrastructure to support multiple test vectors
+  * tests: split tests into own functions
+  * tests: add decode tests for TCAP End tests
+  * asn1: remove wireshark sepcific parts
+  * tests: decoding: print the half decoded structure
+
+ -- Pau Espin Pedrol <pespin@sysmocom.de>  Thu, 20 Aug 2026 10:19:49 +0200
+
 libosmo-asn1-tcap (0.2.1) unstable; urgency=medium
 
   * Remove unneeded asn1c-fixup.patch
